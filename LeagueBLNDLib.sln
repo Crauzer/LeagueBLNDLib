@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueBLNDLib", "LeagueBLNDLib\LeagueBLNDLib.csproj", "{A5F66268-54DE-494D-A5DF-07F8683853A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "CLI\CLI.csproj", "{CA4909A2-2510-4062-ABF7-6D1FE3B7DF8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5F66268-54DE-494D-A5DF-07F8683853A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5F66268-54DE-494D-A5DF-07F8683853A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5F66268-54DE-494D-A5DF-07F8683853A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5F66268-54DE-494D-A5DF-07F8683853A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA4909A2-2510-4062-ABF7-6D1FE3B7DF8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA4909A2-2510-4062-ABF7-6D1FE3B7DF8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA4909A2-2510-4062-ABF7-6D1FE3B7DF8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA4909A2-2510-4062-ABF7-6D1FE3B7DF8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
