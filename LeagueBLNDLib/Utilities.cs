@@ -28,17 +28,17 @@ public static class Utilities
     public static string ReadString(this BinaryReader br, int blockSize)
     {
         bool shouldStop = false;
-        string name = "";
+        string toReturn = "";
         while (shouldStop != true)
         {
-            name += br.ReadChars(blockSize).GetByteBlock(out shouldStop);
+            toReturn += br.ReadChars(blockSize).GetCharBlock(out shouldStop);
         }
-        return name;
+        return toReturn;
     }
-    public static string GetByteBlock(this char[] byteBlock, out bool shouldStop)
+    public static string GetCharBlock(this char[] charBlock, out bool shouldStop)
     {
         string toReturn = "";
-        foreach (char c in byteBlock)
+        foreach (char c in charBlock)
         {
             if (c != '\u0000')
             {

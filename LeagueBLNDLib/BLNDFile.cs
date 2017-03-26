@@ -11,9 +11,11 @@ namespace LeagueBLNDLib
     {
         public BLNDHeader          Header;
         public List<BLNDBlend>     Blends     { get; private set; } = new List<BLNDBlend>();
-        public List<BLNDAnimation> Animations { get; private set; } = new List<BLNDAnimation>();
+        public List<BLNDEntry>     Entries    { get; private set; } = new List<BLNDEntry>();
         public List<BLNDCategory>  Categories { get; private set; } = new List<BLNDCategory>();
+        public List<BLNDAnimation> Animations { get; private set; } = new List<BLNDAnimation>();
         public string              Skeleton   { get; private set; }
+
         public BLNDFile(string fileLocation)
         {
             using (BinaryReader br = new BinaryReader(File.OpenRead(fileLocation)))
@@ -30,6 +32,12 @@ namespace LeagueBLNDLib
                 for(int i = 0; i < Header.CategoryCount; i++)
                 {
                     Categories.Add(new BLNDCategory(br));
+                }
+
+                br.Seek(Header.offsetOffsetEntries, SeekOrigin.Begin);
+                for(int i = 0; i < Header.EntriesCount; i++)
+                {
+                    Entries.Add(new BLNDEntry(br.ReadUInt32(), br));
                 }
 
                 br.Seek(Header.offsetAnimation, SeekOrigin.Begin);

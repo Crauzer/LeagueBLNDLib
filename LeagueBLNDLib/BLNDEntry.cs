@@ -18,7 +18,7 @@ namespace LeagueBLNDLib
         public UInt32 Length2  { get; private set; }
         public string Name     { get; private set; }
         public UInt32 DataFlag { get; private set; }
-        public BLNDEntry(UInt32 Offset)
+        public BLNDEntry(UInt32 Offset, BinaryReader br)
         {
             this.Offset = Offset;
         }

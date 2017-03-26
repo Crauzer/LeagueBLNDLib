@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static Utilities;
 
 namespace LeagueBLNDLib
 {
@@ -17,6 +14,10 @@ namespace LeagueBLNDLib
             Hash = br.ReadUInt32();
             Offset = (UInt32)br.BaseStream.Position;
             Offset += br.ReadUInt32();
+            uint returnOffset = (uint)br.BaseStream.Position;
+            br.Seek(Offset, SeekOrigin.Begin);
+            Name = br.ReadString(4);
+            br.Seek(returnOffset, SeekOrigin.Begin);
         }
         public void Rename(string Name)
         {
