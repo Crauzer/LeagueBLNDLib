@@ -37,7 +37,8 @@ namespace LeagueBLNDLib
                 br.Seek(Header.offsetOffsetEntries, SeekOrigin.Begin);
                 for(int i = 0; i < Header.EntriesCount; i++)
                 {
-                    Entries.Add(new BLNDEntry(br.ReadUInt32(), br));
+                    long returnOffset = br.BaseStream.Position;
+                    Entries.Add(new BLNDEntry(br.ReadUInt32() + (UInt32)returnOffset, (UInt32)returnOffset, i, br));
                 }
 
                 br.Seek(Header.offsetAnimation, SeekOrigin.Begin);
