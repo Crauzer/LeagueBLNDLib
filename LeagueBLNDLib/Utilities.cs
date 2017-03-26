@@ -53,4 +53,14 @@ public static class Utilities
         shouldStop = false;
         return toReturn;
     }
+
+    public static string AddPadding(this string toPadd, string toAdd, int desiredLength)
+    {
+        string toReturn = toPadd;
+        for(int i = toPadd.Length; i < desiredLength; i++)
+        {
+            toReturn += toAdd;
+        }
+        return toReturn;
+    }
 }

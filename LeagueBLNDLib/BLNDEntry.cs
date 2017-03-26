@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using static Utilities;
 
 namespace LeagueBLNDLib
 {
@@ -30,6 +31,29 @@ namespace LeagueBLNDLib
             Name = br.ReadString(4);
             DataFlag = br.ReadUInt32();
             br.Seek(returnOffset + 4, SeekOrigin.Begin);
+        }
+        public class ParticleData
+        {
+            public UInt32       Flag1    { get; private set; }           //2
+            public UInt32       Flag2    { get; private set; }           //1
+            public UnknownField Unknown3 { get; private set; }           //0
+            public UInt32       Length1  { get; private set; }           //36
+            public UInt32       Length2  { get; private set; }           //48
+            public UInt32       Length3  { get; private set; }           //80
+            public UInt32       Length4  { get; private set; }           //92
+            public UnknownField Unknown8 { get; private set; }           //-1
+            public List<string> Strings  { get; private set; } = new List<string>();
+            public ParticleData(BinaryReader br) //lengths of strings get computed as such: Length2 - Length1, Length3 - Length2, Length4 - Length3
+            {
+                Flag1 = br.ReadUInt32();
+                Flag2 = br.ReadUInt32();
+                Unknown3 = new UnknownField(br.ReadUInt32(), 0, 4);
+                Length1 = br.ReadUInt32();
+                Length2 = br.ReadUInt32();
+                Length3 = br.ReadUInt32();
+                Length4 = br.ReadUInt32();
+                Unknown8 = new UnknownField(br.ReadSingle(), 0, 4);
+            }
         }
     }
 }

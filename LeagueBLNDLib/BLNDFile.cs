@@ -56,5 +56,15 @@ namespace LeagueBLNDLib
                 }
             }
         }
+        public void Dump(string fileLocation)
+        {
+            using (StreamWriter sw = new StreamWriter(File.Open(fileLocation, FileMode.OpenOrCreate)))
+            {
+                foreach(BLNDEntry entry in Entries)
+                {
+                    sw.WriteLine("Name : " + entry.Name.ToString().AddPadding(" ", 32) + "Flag : " + entry.Flag.ToString().AddPadding(" ", 3) + "DataFlag : " + entry.DataFlag.ToString().AddPadding(" ", 3));
+                }
+            }
+        }
     }
 }
