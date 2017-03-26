@@ -22,9 +22,5 @@ namespace LeagueBLNDLib
         {
             this.Offset = Offset;
         }
-        public void Load(BinaryReader br)
-        {
-
-        }
     }
 }

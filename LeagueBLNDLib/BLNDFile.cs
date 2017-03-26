@@ -48,6 +48,11 @@ namespace LeagueBLNDLib
 
                 br.Seek(Header.offsetSKL, SeekOrigin.Begin);
                 Skeleton = br.ReadString(4);
+
+                foreach(BLNDBlend blend in Blends)
+                {
+                    blend.AssignEntries(Entries[(int)blend.FromBlend], Entries[(int)blend.ToBlend]);
+                }
             }
         }
     }

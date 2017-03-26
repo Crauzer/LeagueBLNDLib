@@ -20,7 +20,7 @@ namespace LeagueBLNDLib
             Flag = br.ReadUInt32();
             TimeToBlend = br.ReadSingle();
         }
-        public void AssignAnimations(BLNDAnimation FromBlend, BLNDAnimation ToBlend)
+        public void AssignEntries(BLNDEntry FromBlend, BLNDEntry ToBlend)
         {
             this.FromBlend = FromBlend;
             this.ToBlend = ToBlend;

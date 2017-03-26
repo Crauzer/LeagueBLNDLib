@@ -19,9 +19,5 @@ namespace LeagueBLNDLib
             Name = br.ReadString(4);
             br.Seek(returnOffset, SeekOrigin.Begin);
         }
-        public void Rename(string Name)
-        {
-            this.Name = Name;
-        }
     }
 }
