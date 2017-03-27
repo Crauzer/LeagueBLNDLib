@@ -43,7 +43,7 @@
     <Compile Include="BLNDAnimation.cs" />
     <Compile Include="BLNDBlend.cs" />
     <Compile Include="BLNDCategory.cs" />
-    <Compile Include="BLNDEntry.cs" />
+    <Compile Include="BLNDEvent.cs" />
     <Compile Include="BLNDFile.cs" />
     <Compile Include="BLNDHeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
