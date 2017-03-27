@@ -35,7 +35,7 @@ public static class Utilities
         }
         return toReturn;
     }
-    public static string GetCharBlock(this char[] charBlock, out bool shouldStop)
+    private static string GetCharBlock(this char[] charBlock, out bool shouldStop)
     {
         string toReturn = "";
         foreach (char c in charBlock)

@@ -8,28 +8,28 @@ using static Utilities;
 
 namespace LeagueBLNDLib
 {
-    public class BLNDEntry
+    public class BLNDEvent
     {
-        public byte[] Data     { get; private set; }
-        public UInt32 Offset   { get; private set; }
-        public UInt32 Size     { get; private set; }
-        public UInt32 Flag     { get; private set; }
-        public UInt32 Index    { get; private set; }
-        public UInt32 Length1  { get; private set; }
-        public UInt32 Length2  { get; private set; }
-        public string Name     { get; private set; }
-        public UInt32 DataFlag { get; private set; }
-        public BLNDEntry(UInt32 Offset, UInt32 returnOffset, int entryIndex, BinaryReader br)
+        public byte[]    Data     { get; private set; }
+        public UInt32    Offset   { get; private set; }
+        public UInt32    Size     { get; private set; }
+        public EventType Flag     { get; private set; }
+        public UInt32    Index    { get; private set; }
+        public UInt32    Length1  { get; private set; }
+        public UInt32    Length2  { get; private set; }
+        public string    Name     { get; private set; }
+        public DataType  DataFlag { get; private set; }
+        public BLNDEvent(UInt32 Offset, UInt32 returnOffset, int entryIndex, BinaryReader br)
         {
             this.Offset = (UInt32)(Offset - entryIndex * 4);
             br.Seek(this.Offset, SeekOrigin.Begin);
             Size = br.ReadUInt32();
-            Flag = br.ReadUInt32();
+            Flag = (EventType)br.ReadUInt32();
             Index = br.ReadUInt32();
             Length1 = br.ReadUInt32();
             Length2 = br.ReadUInt32();
             Name = br.ReadString(4);
-            DataFlag = br.ReadUInt32();
+            DataFlag = (DataType)br.ReadUInt32();
             br.Seek(returnOffset + 4, SeekOrigin.Begin);
         }
         public class ParticleData
@@ -47,13 +47,22 @@ namespace LeagueBLNDLib
             {
                 Flag1 = br.ReadUInt32();
                 Flag2 = br.ReadUInt32();
-                Unknown3 = new UnknownField(br.ReadUInt32(), 0, 4);
+                Unknown3 = new UnknownField(br.ReadUInt32(), 12, 4);
                 Length1 = br.ReadUInt32();
                 Length2 = br.ReadUInt32();
                 Length3 = br.ReadUInt32();
                 Length4 = br.ReadUInt32();
-                Unknown8 = new UnknownField(br.ReadSingle(), 0, 4);
+                Unknown8 = new UnknownField(br.ReadSingle(), 32, 4);
             }
+        }
+
+        public enum EventType : UInt32
+        {
+
+        }
+        public enum DataType : UInt32
+        {
+            AnimationData = 1
         }
     }
 }

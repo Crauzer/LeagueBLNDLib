@@ -20,18 +20,18 @@ namespace LeagueBLNDLib
         public UInt32       SkinID              { get; private set; }
         public UInt32       CategoryCount       { get; private set; }
         public UInt32       AnimationCount      { get; private set; }
-        public UnknownField Zero3               { get; private set; }
-        public UInt32       UnkArrayCount       { get; private set; }
+        public UInt32       UnkSectorEntryCount { get; private set; }
+        public UInt32       NegativesCount      { get; private set; }
         public UnknownField Zero4               { get; private set; }
         public UnknownField Zero5               { get; private set; }
         public UInt32       OffsetBlend         { get; private set; }
         public UnknownField Zero6               { get; private set; }
         public UInt32       offsetCategory      { get; private set; }
         public UInt32       offsetOffsetEntries { get; private set; }
-        public UInt32       offsetUnkSector1    { get; private set; }
+        public UInt32       offsetUnknownSector { get; private set; }
         public UInt32       offsetNegatives     { get; private set; }
         public UInt32       offsetNulls         { get; private set; }
-        public UInt32       AnimationCount2     { get; private set; }
+        public UInt32       NullsCount          { get; private set; }
         public UInt32       offsetAnimation     { get; private set; }
         public UnknownField Zero7               { get; private set; }
         public UInt32       offsetSKL           { get; private set; }
@@ -55,8 +55,8 @@ namespace LeagueBLNDLib
             SkinID = br.ReadUInt32();
             CategoryCount = br.ReadUInt32();
             AnimationCount = br.ReadUInt32();
-            Zero3 = new UnknownField(br.ReadUInt32(), 40, 4);
-            UnkArrayCount = br.ReadUInt32();
+            UnkSectorEntryCount = br.ReadUInt32();
+            NegativesCount = br.ReadUInt32();
             Zero4 = new UnknownField(br.ReadUInt32(), 48, 4);
             Zero5 = new UnknownField(br.ReadUInt32(), 52, 4);
 
@@ -71,8 +71,8 @@ namespace LeagueBLNDLib
             offsetOffsetEntries = (UInt32)br.BaseStream.Position;
             offsetOffsetEntries += br.ReadUInt32();
 
-            offsetUnkSector1 = (UInt32)br.BaseStream.Position;
-            offsetUnkSector1 += br.ReadUInt32();
+            offsetUnknownSector = (UInt32)br.BaseStream.Position;
+            offsetUnknownSector += br.ReadUInt32();
 
             offsetNegatives = (UInt32)br.BaseStream.Position;
             offsetNegatives += br.ReadUInt32();
@@ -80,7 +80,7 @@ namespace LeagueBLNDLib
             offsetNulls = (UInt32)br.BaseStream.Position;
             offsetNulls += br.ReadUInt32();
 
-            AnimationCount2 = br.ReadUInt32();
+            NullsCount = br.ReadUInt32();
 
             offsetAnimation = (UInt32)br.BaseStream.Position;
             offsetAnimation += br.ReadUInt32();
