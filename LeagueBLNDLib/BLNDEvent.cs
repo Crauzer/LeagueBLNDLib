@@ -18,7 +18,6 @@ namespace LeagueBLNDLib
         public UInt32    Length1  { get; private set; }
         public UInt32    Length2  { get; private set; }
         public string    Name     { get; private set; }
-        public DataType  DataFlag { get; private set; }
         public BLNDEvent(UInt32 Offset, UInt32 returnOffset, int entryIndex, BinaryReader br)
         {
             this.Offset = (UInt32)(Offset - entryIndex * 4);
@@ -29,7 +28,7 @@ namespace LeagueBLNDLib
             Length1 = br.ReadUInt32();
             Length2 = br.ReadUInt32();
             Name = br.ReadString(4);
-            DataFlag = (DataType)br.ReadUInt32();
+            Data = br.ReadBytes((int)(Size - 12 - (Length2 - Length1)));
             br.Seek(returnOffset + 4, SeekOrigin.Begin);
         }
         public class ParticleData
@@ -59,10 +58,6 @@ namespace LeagueBLNDLib
         public enum EventType : UInt32
         {
 
-        }
-        public enum DataType : UInt32
-        {
-            AnimationData = 1
         }
     }
 }

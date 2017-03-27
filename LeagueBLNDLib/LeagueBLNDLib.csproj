@@ -46,6 +46,7 @@
     <Compile Include="BLNDEvent.cs" />
     <Compile Include="BLNDFile.cs" />
     <Compile Include="BLNDHeader.cs" />
+    <Compile Include="BLNDUnknown.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>

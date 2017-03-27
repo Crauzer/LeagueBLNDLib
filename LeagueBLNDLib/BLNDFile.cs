@@ -13,6 +13,7 @@ namespace LeagueBLNDLib
         public List<BLNDBlend>     Blends     { get; private set; } = new List<BLNDBlend>();
         public List<BLNDCategory>  Categories { get; private set; } = new List<BLNDCategory>();
         public List<BLNDEvent>     Entries    { get; private set; } = new List<BLNDEvent>();
+        public List<BLNDUnknown>   Unknowns   { get; private set; } = new List<BLNDUnknown>();
         public List<Int32>         Negatives  { get; private set; } = new List<Int32>();
         public List<UInt32>        Nulls      { get; private set; } = new List<UInt32>();
         public List<BLNDAnimation> Animations { get; private set; } = new List<BLNDAnimation>();
@@ -39,8 +40,15 @@ namespace LeagueBLNDLib
                 br.Seek(Header.offsetOffsetEntries, SeekOrigin.Begin);
                 for(int i = 0; i < Header.EntriesCount; i++)
                 {
-                    long returnOffset = br.BaseStream.Position;
-                    Entries.Add(new BLNDEvent(br.ReadUInt32() + (UInt32)returnOffset, (UInt32)returnOffset, i, br));
+                    UInt32 returnOffset = (UInt32)br.BaseStream.Position;
+                    Entries.Add(new BLNDEvent(br.ReadUInt32() + returnOffset, returnOffset, i, br));
+                }
+
+                br.Seek(Header.offsetUnknownSector, SeekOrigin.Begin);
+                for(int i = 0; i < Header.UnkSectorEntryCount; i++)
+                {
+                    UInt32 returnOffset = (UInt32)br.BaseStream.Position;
+                    Unknowns.Add(new BLNDUnknown(br, br.ReadUInt32(), returnOffset));
                 }
 
                 br.Seek(Header.offsetNegatives, SeekOrigin.Begin);
@@ -67,16 +75,6 @@ namespace LeagueBLNDLib
                 foreach(BLNDBlend blend in Blends)
                 {
                     blend.AssignEntries(Entries[(int)blend.FromBlend], Entries[(int)blend.ToBlend]);
-                }
-            }
-        }
-        public void Dump(string fileLocation)
-        {
-            using (StreamWriter sw = new StreamWriter(File.Open(fileLocation, FileMode.OpenOrCreate)))
-            {
-                foreach(BLNDEvent entry in Entries)
-                {
-                    sw.WriteLine("Name : " + entry.Name.ToString().AddPadding(" ", 32) + "Flag : " + entry.Flag.ToString().AddPadding(" ", 3) + "DataFlag : " + entry.DataFlag.ToString().AddPadding(" ", 3));
                 }
             }
         }
