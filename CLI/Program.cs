@@ -12,7 +12,7 @@ namespace CLI
     {
         static void Main(string[] args)
         {
-            BLNDFile blnd = new BLNDFile("RumbleSkin03.blnd");
+            BLNDFile blnd = new BLNDFile("XinZhaoBase.blnd");
         }
     }
 }

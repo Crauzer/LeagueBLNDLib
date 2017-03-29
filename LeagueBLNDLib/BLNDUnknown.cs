@@ -17,6 +17,7 @@ namespace LeagueBLNDLib
         public UInt32 Unknown3 { get; private set; }
         public UInt32 Unknown4 { get; private set; }
         public UInt32 Unknown5 { get; private set; }
+        public string Name     { get; private set; }
         public byte[] Data     { get; private set; }
         public BLNDUnknown(BinaryReader br, UInt32 offset, UInt32 returnOffset)
         {

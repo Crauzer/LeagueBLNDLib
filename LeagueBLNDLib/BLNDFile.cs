@@ -31,45 +31,45 @@ namespace LeagueBLNDLib
                     Blends.Add(new BLNDBlend(br));
                 }
 
-                br.Seek(Header.offsetCategory, SeekOrigin.Begin);
+                br.Seek(Header.OffsetCategory, SeekOrigin.Begin);
                 for(int i = 0; i < Header.CategoryCount; i++)
                 {
                     Categories.Add(new BLNDCategory(br));
                 }
 
-                br.Seek(Header.offsetOffsetEntries, SeekOrigin.Begin);
+                br.Seek(Header.OffsetEvents, SeekOrigin.Begin);
                 for(int i = 0; i < Header.EntriesCount; i++)
                 {
                     UInt32 returnOffset = (UInt32)br.BaseStream.Position;
                     Entries.Add(new BLNDEvent(br.ReadUInt32() + returnOffset, returnOffset, i, br));
                 }
 
-                br.Seek(Header.offsetUnknownSector, SeekOrigin.Begin);
+                br.Seek(Header.OffsetUnknownSector, SeekOrigin.Begin);
                 for(int i = 0; i < Header.UnkSectorEntryCount; i++)
                 {
                     UInt32 returnOffset = (UInt32)br.BaseStream.Position;
                     Unknowns.Add(new BLNDUnknown(br, br.ReadUInt32(), returnOffset));
                 }
 
-                br.Seek(Header.offsetNegatives, SeekOrigin.Begin);
+                br.Seek(Header.OffsetNegatives, SeekOrigin.Begin);
                 for(int i = 0; i < Header.NegativesCount; i++)
                 {
                     Negatives.Add(br.ReadInt32());
                 }
 
-                br.Seek(Header.offsetNulls, SeekOrigin.Begin);
+                br.Seek(Header.OffsetNulls, SeekOrigin.Begin);
                 for(int i = 0; i < Header.NullsCount; i++)
                 {
                     Nulls.Add(br.ReadUInt32());
                 }
 
-                br.Seek(Header.offsetAnimation, SeekOrigin.Begin);
+                br.Seek(Header.OffsetAnimation, SeekOrigin.Begin);
                 for(int i = 0; i < Header.AnimationCount; i++)
                 {
                     Animations.Add(new BLNDAnimation(br));
                 }
 
-                br.Seek(Header.offsetSKL, SeekOrigin.Begin);
+                br.Seek(Header.OffsetSKL, SeekOrigin.Begin);
                 Skeleton = br.ReadString(4);
 
                 foreach(BLNDBlend blend in Blends)
