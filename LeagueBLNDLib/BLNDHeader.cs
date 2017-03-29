@@ -12,9 +12,9 @@ namespace LeagueBLNDLib
     {
         public string       Magic               { get; private set; }
         public UInt32       Version             { get; private set; }
-        public UnknownField Zero1               { get; private set; }
+        public UInt32       Zero1               { get; private set; }
         public UInt32       CreationID          { get; private set; }
-        public UnknownField Zero2               { get; private set; }
+        public UInt32        Zero2               { get; private set; }
         public UInt32       EntriesCount        { get; private set; }
         public UInt32       BlendCount          { get; private set; }
         public UInt32       Unknown             { get; private set; }
@@ -22,10 +22,10 @@ namespace LeagueBLNDLib
         public UInt32       AnimationCount      { get; private set; }
         public UInt32       UnkSectorEntryCount { get; private set; }
         public UInt32       NegativesCount      { get; private set; }
-        public UnknownField Zero4               { get; private set; }
-        public UnknownField Zero5               { get; private set; }
+        public UInt32       Zero4               { get; private set; }
+        public UInt32       Zero5               { get; private set; }
         public UInt32       OffsetBlend         { get; private set; }
-        public UnknownField Zero6               { get; private set; }
+        public UInt32       Zero6               { get; private set; }
         public UInt32       OffsetCategory      { get; private set; }
         public UInt32       OffsetEvents        { get; private set; }
         public UInt32       OffsetUnknownSector { get; private set; }
@@ -33,9 +33,9 @@ namespace LeagueBLNDLib
         public UInt32       OffsetNulls         { get; private set; }
         public UInt32       NullsCount          { get; private set; }
         public UInt32       OffsetAnimation     { get; private set; }
-        public UnknownField Zero7               { get; private set; }
+        public UInt32       Zero7               { get; private set; }
         public UInt32       OffsetSKL           { get; private set; }
-        public UnknownField Zero8               { get; private set; }
+        public UInt32       Zero8               { get; private set; }
         public const int    Size                = 108;
         public BLNDHeader(BinaryReader br)
         {
@@ -47,9 +47,9 @@ namespace LeagueBLNDLib
             {
                 throw new Exception("Invalid BLND version");
             }
-            Zero1 = new UnknownField(br.ReadUInt32(), 12, 4);
+            Zero1 = br.ReadUInt32();
             CreationID = br.ReadUInt32();
-            Zero2 = new UnknownField(br.ReadUInt32(), 18, 4);
+            Zero2 = br.ReadUInt32();
             EntriesCount = br.ReadUInt32();
             BlendCount = br.ReadUInt32();
             Unknown = br.ReadUInt32();
@@ -57,13 +57,13 @@ namespace LeagueBLNDLib
             AnimationCount = br.ReadUInt32();
             UnkSectorEntryCount = br.ReadUInt32();
             NegativesCount = br.ReadUInt32();
-            Zero4 = new UnknownField(br.ReadUInt32(), 48, 4);
-            Zero5 = new UnknownField(br.ReadUInt32(), 52, 4);
+            Zero4 = br.ReadUInt32();
+            Zero5 = br.ReadUInt32();
 
             OffsetBlend = (UInt32)br.BaseStream.Position;
             OffsetBlend += br.ReadUInt32();
 
-            Zero6 = new UnknownField(br.ReadUInt32(), 60, 4);
+            Zero6 = br.ReadUInt32();
 
             OffsetCategory = (UInt32)br.BaseStream.Position;
             OffsetCategory += br.ReadUInt32();
@@ -85,12 +85,12 @@ namespace LeagueBLNDLib
             OffsetAnimation = (UInt32)br.BaseStream.Position;
             OffsetAnimation += br.ReadUInt32();
 
-            Zero7 = new UnknownField(br.ReadUInt32(), 80, 4);
+            Zero7 = br.ReadUInt32();
 
             OffsetSKL = (UInt32)br.BaseStream.Position;
             OffsetSKL += br.ReadUInt32();
 
-            Zero8 = new UnknownField(br.ReadUInt32(), 84, 4);
+            Zero8 = br.ReadUInt32();
         }
     }
 }

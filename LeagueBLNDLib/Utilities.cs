@@ -7,19 +7,6 @@ using System.Threading.Tasks;
 
 public static class Utilities
 {
-    public struct UnknownField
-    {
-        public object Field;
-        public uint StructureOffset;
-        public uint Size;
-        public UnknownField(object Field, uint StructureOffset, uint Size)
-        {
-            this.Field = Field;
-            this.StructureOffset = StructureOffset;
-            this.Size = Size;
-        }
-    }
-
     public static void Seek(this BinaryReader br, uint offset, SeekOrigin origin)
     {
         br.BaseStream.Seek(offset, origin);
